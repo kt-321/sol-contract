@@ -7,7 +7,7 @@ import '@openzeppelin/contracts/access/Ownable.sol';
 contract MyContract is ERC721A, Ownable {
     string public baseURI;
     string public baseExtension = ".json";
-    address public constant withdrawAddress =0x0195Fcc920EeE9a2726A5762B88720f6aC03a577;
+    address public constant withdrawAddress = 0x0195Fcc920EeE9a2726A5762B88720f6aC03a577;
 
     uint256 public mintCost = 0.001 ether;
     uint256 public burnMintCost = 0.001 ether;

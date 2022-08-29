@@ -14,13 +14,16 @@ describe("MyContract", function () {
             expect(await hardhatToken.owner()).to.equal(owner.address)
         })
     })
-    // TODO
+
     describe('Constructor', function () {
-        it('correct baseURI', async function () {
-            // TODO
+        it('correct baseURI is set', async function () {
+            expect(await hardhatToken.baseURI()).to.equal('ipfs://QmSFqDUGVSP9JYniDPs3HAynrC5eQSUyoDswDVFDw1CP5J')
         })
         it('10 tokens are minted by withdrawAddress', async function () {
-            // TODO
+            for (i=0; i<10; i++) {
+                expect(await hardhatToken.ownerOf(i+1)).to.equal('0x0195Fcc920EeE9a2726A5762B88720f6aC03a577')
+            }
+            expect(await hardhatToken.exists(11)).to.be.false
         })
     })
 
@@ -52,11 +55,17 @@ describe("MyContract", function () {
         })
 
         it('Should be reverted if exceeded max supply', async function () {
-            hardhatToken.connect(owner).setMaxSupply(1)
-            const overrides = {
-                value: ethers.utils.parseEther('0.002'),
+            let overrides = {
+                value: ethers.utils.parseEther('0.005'),
             }
-            await expect(hardhatToken.connect(addr1).mint(2, overrides)).to.be.revertedWith('exceed max supply');
+            for (i=0; i<17; i++) {
+                await hardhatToken.connect(addrs[i]).mint(5, overrides)
+            }
+            overrides = {
+                value: ethers.utils.parseEther('0.004')
+            }
+            await hardhatToken.connect(addrs[17]).mint(4, overrides)
+            await expect(hardhatToken.connect(addrs[18]).mint(2, overrides)).to.be.revertedWith('exceed max supply');
         })
 
         it('Should be reverted if the caller does not have enough eth', async function () {
@@ -121,7 +130,6 @@ describe("MyContract", function () {
                 expect(await hardhatToken.ownerOf(i+16)).to.equal(addr1.address);
             }
 
-            // have burned
             expect(await hardhatToken.exists(11)).to.be.false
             expect(await hardhatToken.exists(12)).to.be.false
         })
@@ -155,8 +163,6 @@ describe("MyContract", function () {
             // 5*3+4+2=21
             for (i=0; i<3; i++) {
                 firstToken = 11+i*5
-                c = await hardhatToken.whitelistCounts(addrs[i].address)
-                console.log(i, ":",c)
                 await hardhatToken.connect(addrs[i]).burnMint([firstToken, firstToken+1, firstToken+2, firstToken+3, firstToken+4], overrides);
             }
 
@@ -220,6 +226,7 @@ describe("MyContract", function () {
             await expect(hardhatToken.connect(addr1).setMaxSupply(1000)).to.be.revertedWith('Ownable: caller is not the owner');
         })
     });
+
     describe('setMaxBurnMint', function () {
         it ('Contract owner can execute', async function () {
             await expect(hardhatToken.connect(owner).setMaxBurnMint(20))
@@ -253,50 +260,82 @@ describe("MyContract", function () {
     });
 
     describe('setMintCost', function () {
+        it ('Should set mint cost if the caller is owner', async function () {
+            await hardhatToken.connect(owner).setMintCost(2*10**15)
+            expect(await hardhatToken.mintCost()).to.equal(2*10**15)
+        })
         it ('Should be reverted because the caller is not owner', async function () {
-            // TODO
+            await expect(hardhatToken.connect(addr1).setMintCost(2*10**15)).revertedWith('Ownable: caller is not the owner')
         })
     });
 
     describe('setBurnMintCost', function () {
+        it ('Should set burn mint cost if the caller is owner', async function () {
+            await hardhatToken.connect(owner).setMintCost(2*10**15)
+            expect(await hardhatToken.mintCost()).to.equal(2*10**15)
+        })
         it ('Should be reverted because the caller is not owner', async function () {
-            // TODO
+            await expect(hardhatToken.connect(addr1).setBurnMintCost(2*10**15)).revertedWith('Ownable: caller is not the owner')
         })
     });
 
     describe('setOnlyWhitelisted', function () {
+        it ('Should set onlyWhiteliste if the caller is owner', async function () {
+            await hardhatToken.connect(owner).setOnlyWhitelisted(true)
+            expect(await hardhatToken.onlyWhitelisted()).to.be.true
+        })
         it ('Should be reverted because the caller is not owner', async function () {
-            // TODO
+            await expect(hardhatToken.connect(addr1).setOnlyWhitelisted(true)).revertedWith('Ownable: caller is not the owner')
         })
     });
 
     describe('setMaxMintAmount', function () {
+        it ('Should set maxMintAmount if the caller is owner', async function () {
+            await hardhatToken.connect(owner).setMaxMintAmount(10)
+            expect(await hardhatToken.maxMintAmount()).to.equal(10)
+        })
         it ('Should be reverted because the caller is not owner', async function () {
-            // TODO
+            await expect(hardhatToken.connect(addr1).setMaxMintAmount(10)).revertedWith('Ownable: caller is not the owner')
         })
     });
 
-    describe('setMaxMintAmountForWhiteList', function () {
+    describe('setMaxMintAmountForWhitelist', function () {
+        it ('Should set maxMintAmountForWhitelist if the caller is owner', async function () {
+            await hardhatToken.connect(owner).setMaxMintAmountForWhiteList(15)
+            expect(await hardhatToken.maxMintAmountForWhitelist()).to.equal(15)
+        })
         it ('Should be reverted because the caller is not owner', async function () {
-            // TODO
+            await expect(hardhatToken.connect(addr1).setMaxMintAmountForWhiteList(15)).revertedWith('Ownable: caller is not the owner')
         })
     });
 
     describe('setBaseExtension', function () {
+        it ('Should set baseExtension if the caller is not owner', async function () {
+            await hardhatToken.connect(owner).setBaseExtension('.jpg')
+            expect(await hardhatToken.baseExtension()).to.equal('.jpg')
+        })
         it ('Should be reverted because the caller is not owner', async function () {
-            // TODO
+            await expect(hardhatToken.connect(addr1).setBaseExtension('.jpg')).revertedWith('Ownable: caller is not the owner')
         })
     });
 
     describe('pause', function () {
+        it ('Should set pause if the caller is owner', async function () {
+            await hardhatToken.connect(owner).pause(false)
+            expect(await hardhatToken.paused()).to.equal(false)
+        })
         it ('Should be reverted because the caller is not owner', async function () {
-            // TODO
+            await expect(hardhatToken.connect(addr1).pause(false)).revertedWith('Ownable: caller is not the owner')
         })
     });
 
     describe('burnMintPause', function () {
+        it ('Should set burnMintPaused if the caller is owner', async function () {
+            await hardhatToken.connect(owner).burnMintPause(false)
+            expect(await hardhatToken.connect(addr1).burnMintPaused()).to.equal(false)
+        })
         it ('Should be reverted because the caller is not owner', async function () {
-            // TODO
+            await expect(hardhatToken.connect(addr1).burnMintPause(false)).revertedWith('Ownable: caller is not the owner')
         })
     });
 
@@ -321,12 +360,6 @@ describe("MyContract", function () {
                 await hardhatToken.provider.getBalance(withdrawAddress),
             )
             expect(parseInt(accountBalanceAfterWithdraw) > parseInt(accountBalanceBeforeWithdraw)).to.be.true
-        })
-    });
-
-    describe('_startTokenId', function () {
-        it ('', async function () {
-            // TODO
         })
     });
 })
