@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/moriwakikeita/solpjs/mycontract/contracts/myContract.sol": {
-      "lastModificationDate": 1661510319182,
-      "contentHash": "00bec02feba8be12bbde42afadcee758",
+      "lastModificationDate": 1661743389313,
+      "contentHash": "06b1e54a3568b06f323b3334cf097370",
       "sourceName": "contracts/myContract.sol",
       "solcConfig": {
         "version": "0.8.9",
@@ -36,11 +36,11 @@
         ">=0.7.0 <0.9.0"
       ],
       "artifacts": [
-        "MyNFT"
+        "MyContract"
       ]
     },
     "/Users/moriwakikeita/solpjs/mycontract/node_modules/erc721a/contracts/ERC721A.sol": {
-      "lastModificationDate": 1661509724259,
+      "lastModificationDate": 1661545387994,
       "contentHash": "3bc4758921849ea6614cf36ea0b8f5ad",
       "sourceName": "erc721a/contracts/ERC721A.sol",
       "solcConfig": {
@@ -182,6 +182,41 @@
       ],
       "artifacts": [
         "Context"
+      ]
+    },
+    "/Users/moriwakikeita/solpjs/mycontract/node_modules/hardhat/console.sol": {
+      "lastModificationDate": 1661510017770,
+      "contentHash": "4ff3cd2f6272c9a6516e9ee4f2b967d3",
+      "sourceName": "hardhat/console.sol",
+      "solcConfig": {
+        "version": "0.8.9",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.4.22 <0.9.0"
+      ],
+      "artifacts": [
+        "console"
       ]
     }
   }

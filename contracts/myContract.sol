@@ -1,18 +1,18 @@
 pragma solidity >=0.7.0 <0.9.0;
 
 import 'erc721a/contracts/ERC721A.sol';
-import "@openzeppelin/contracts/access/Ownable.sol";
+import '@openzeppelin/contracts/access/Ownable.sol';
+// import 'hardhat/console.sol';
 
-contract MyNFT is ERC721A, Ownable {
-    string baseURI;
+contract MyContract is ERC721A, Ownable {
+    string public baseURI;
     string public baseExtension = ".json";
-    // TODO
-    address public constant withdrawAddress =0x0000000000000000000000000000000000000000;
+    address public constant withdrawAddress = 0x0195Fcc920EeE9a2726A5762B88720f6aC03a577;
 
-    uint256 public mintCost = 0;
-    uint256 public burnMintCost = 0;
-    uint256 public maxSupply = 1000;
-    uint256 public maxBurnMint = 200;
+    uint256 public mintCost = 0.001 ether;
+    uint256 public burnMintCost = 0.001 ether;
+    uint256 public maxSupply = 100;
+    uint256 public maxBurnMint = 20;
 
     uint256 public maxMintAmount = 5;
     uint256 public maxMintAmountForWhitelist = 10;
@@ -26,8 +26,7 @@ contract MyNFT is ERC721A, Ownable {
 
     constructor(
     ) ERC721A("My NFT", "MNT") {
-        //TODO
-        setBaseURI('ipfs://');
+        setBaseURI('ipfs://QmSFqDUGVSP9JYniDPs3HAynrC5eQSUyoDswDVFDw1CP5J');
         _safeMint(withdrawAddress, 10);
     }
 
@@ -73,11 +72,11 @@ contract MyNFT is ERC721A, Ownable {
     }
 
     modifier burnMintPausable() {
-        require(!burnMintPaused, "burn mint is paused");
+    require(!burnMintPaused, "burn mint is paused");
         _;
     }
     modifier verifyMaxSupply(uint256 quantity) {
-        require(quantity + totalSupply() <= maxSupply, "burn mint is paused");
+        require(quantity + totalSupply() <= maxSupply, "exceed max supply");
         _;
     }
     modifier verifyMaxAmountAtOnce(uint256 quantity) {
@@ -98,7 +97,7 @@ contract MyNFT is ERC721A, Ownable {
     }
 
     modifier verifyTotalBurn(uint256 quantity) {
-        require(quantity + _totalBurned() <= maxBurnMint, "over total burn cost");
+        require(quantity + _totalBurned() <= maxBurnMint, "over total burn mint count");
         _;
     }
 
@@ -114,7 +113,7 @@ contract MyNFT is ERC721A, Ownable {
         verifyMaxAmountAtOnce(quantity)
         enoughEth(quantity)
         whitelist(quantity)
-        {
+    {
         claimWhitelist(quantity);
         _safeMint(msg.sender, quantity);
     }
