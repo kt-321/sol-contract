@@ -2,17 +2,17 @@ pragma solidity >=0.7.0 <0.9.0;
 
 import 'erc721a/contracts/ERC721A.sol';
 import '@openzeppelin/contracts/access/Ownable.sol';
-import 'hardhat/console.sol';
+// import 'hardhat/console.sol';
 
 contract MyContract is ERC721A, Ownable {
-    string baseURI;
+    string public baseURI;
     string public baseExtension = ".json";
     address public constant withdrawAddress =0x0195Fcc920EeE9a2726A5762B88720f6aC03a577;
 
     uint256 public mintCost = 0.001 ether;
     uint256 public burnMintCost = 0.001 ether;
     uint256 public maxSupply = 100;
-    uint256 public maxBurnMint = 10;
+    uint256 public maxBurnMint = 20;
 
     uint256 public maxMintAmount = 5;
     uint256 public maxMintAmountForWhitelist = 10;
@@ -72,11 +72,11 @@ contract MyContract is ERC721A, Ownable {
     }
 
     modifier burnMintPausable() {
-        require(!burnMintPaused, "burn mint is paused");
+    require(!burnMintPaused, "burn mint is paused");
         _;
     }
     modifier verifyMaxSupply(uint256 quantity) {
-        require(quantity + totalSupply() <= maxSupply, "burn mint is paused");
+        require(quantity + totalSupply() <= maxSupply, "exceed max supply");
         _;
     }
     modifier verifyMaxAmountAtOnce(uint256 quantity) {
@@ -97,7 +97,7 @@ contract MyContract is ERC721A, Ownable {
     }
 
     modifier verifyTotalBurn(uint256 quantity) {
-        require(quantity + _totalBurned() <= maxBurnMint, "over total burn cost");
+        require(quantity + _totalBurned() <= maxBurnMint, "over total burn mint count");
         _;
     }
 
