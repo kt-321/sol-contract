@@ -1,7 +1,7 @@
 # sol-contract
 
 コントラクト
-https://github.com/kt-321/sol-contract
+https://rinkeby.etherscan.io/address/0xbe2B7767a250Ac474876C6eB04AE3a13aBD8c060
 
 ## 概要
 - ジェネラティブNFTのミント・バーンを行うコントラクト
