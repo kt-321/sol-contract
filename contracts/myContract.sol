@@ -2,7 +2,6 @@ pragma solidity >=0.7.0 <0.9.0;
 
 import 'erc721a/contracts/ERC721A.sol';
 import '@openzeppelin/contracts/access/Ownable.sol';
-// import 'hardhat/console.sol';
 
 contract MyContract is ERC721A, Ownable {
     string public baseURI;

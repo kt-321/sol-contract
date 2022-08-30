@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/moriwakikeita/solpjs/mycontract/contracts/myContract.sol": {
-      "lastModificationDate": 1661743389313,
-      "contentHash": "06b1e54a3568b06f323b3334cf097370",
+      "lastModificationDate": 1661819037377,
+      "contentHash": "711e7f537eca64e7ca61b7d58dba65b8",
       "sourceName": "contracts/myContract.sol",
       "solcConfig": {
         "version": "0.8.9",
@@ -182,41 +182,6 @@
       ],
       "artifacts": [
         "Context"
-      ]
-    },
-    "/Users/moriwakikeita/solpjs/mycontract/node_modules/hardhat/console.sol": {
-      "lastModificationDate": 1661510017770,
-      "contentHash": "4ff3cd2f6272c9a6516e9ee4f2b967d3",
-      "sourceName": "hardhat/console.sol",
-      "solcConfig": {
-        "version": "0.8.9",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.4.22 <0.9.0"
-      ],
-      "artifacts": [
-        "console"
       ]
     }
   }
