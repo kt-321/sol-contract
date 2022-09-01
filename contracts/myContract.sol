@@ -16,7 +16,7 @@ contract MyContract is ERC721A, Ownable {
     uint256 public maxMintAmount = 5;
     uint256 public maxMintAmountForWhitelist = 10;
     
-    bool public paused = true;
+    bool public paused = false;
     bool public burnMintPaused = true;
     bool public onlyWhitelisted = false;
 
@@ -25,7 +25,7 @@ contract MyContract is ERC721A, Ownable {
 
     constructor(
     ) ERC721A("My NFT", "MNT") {
-        setBaseURI('ipfs://QmSFqDUGVSP9JYniDPs3HAynrC5eQSUyoDswDVFDw1CP5J');
+        setBaseURI('ipfs://QmZZoY648Mbn5U6zMpoUhrZYwzhoKwJEpUokCgVmLqLUj8/');
         _safeMint(withdrawAddress, 10);
     }
 
