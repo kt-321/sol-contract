@@ -1,7 +1,7 @@
 # sol-contract
 
 コントラクト
-https://rinkeby.etherscan.io/address/0xbe2B7767a250Ac474876C6eB04AE3a13aBD8c060
+https://rinkeby.etherscan.io/address/0xDE3201f35f79a0C5F937159C218Fb782379b92B4#code
 
 ## 概要
 - ジェネラティブNFTのミント・バーンを行うコントラクト
