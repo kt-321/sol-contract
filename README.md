@@ -6,6 +6,7 @@ https://rinkeby.etherscan.io/address/0xDE3201f35f79a0C5F937159C218Fb782379b92B4#
 ## 概要
 - ジェネラティブNFTのミント・バーンを行うコントラクト
 - HardHat使用
+- rinkebyネットワークにデプロイ
 
 ## 主な関数
 - ミント
