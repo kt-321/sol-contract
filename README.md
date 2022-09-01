@@ -5,6 +5,7 @@ https://rinkeby.etherscan.io/address/0xDE3201f35f79a0C5F937159C218Fb782379b92B4#
 
 ## 概要
 - ジェネラティブNFTのミント・バーンを行うコントラクト
+- ERC721A規格を使用
 - HardHat使用
 - rinkebyネットワークにデプロイ
 
