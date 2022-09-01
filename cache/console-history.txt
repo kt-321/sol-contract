@@ -1,0 +1,63 @@
+await mc.tokenURI(1)
+await mc.tokenURI
+await mc.ownerShipOf(1)
+mc.currentIndex
+mc.currentIndex()
+mc.ownerShipOf(1)
+mc.address
+await mc.deployed()
+const mc = await Mc.deploy()
+const Mc = await ethers.getContractFactory("MyContract") 
+await contract11.ownerShipOf()
+await contract11.baseURI()
+const contract11=await factory.attach("0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9")
+const contract10=await factory.attach("0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9")
+const contract10=await factory.attach
+await d.address
+await factory.address
+await d.deployed()
+await factory.deployed()
+const d = await factory.deploy()
+const factory = await ethers.getContractFactory("MyContract")
+await con4.ownerShipOf(1)
+await con4.getMaxMintAmount()
+await con4.ownerShipOf(1)
+await con4.baseURI()
+const con4 = await cotract4.deploy()
+const cotract4 = await hre.ethers.getContractFactory("MyContract");
+await con3._ownershipOf(1)
+await con3.exists(1)
+await con3.baseURI()
+abi.encodePacked(baseURI, _toString(tokenId))
+string(abi.encodePacked(baseURI, _toString(tokenId)))
+await = string(abi.encodePacked(baseURI, _toString(tokenId)))
+await con3.name()
+await con3.name(1)
+await con3.nextTokenId(1)
+await con3.tokenURI(1)
+await con3.baseURI()
+const con3 = await cotract3.deploy()
+const cotract3 = await hre.ethers.getContractFactory("MyContract");
+await con2.baseURI()
+await con2.tokenURI(1)
+await con2.ownerOf(1)
+await con2.name()
+const con2 = await cotract.deploy()
+await con.name()
+await con.tokenURI(1)
+await con.balanceOf('0x0195Fcc920EeE9a2726A5762B88720f6aC03a577');
+await con.balanceOf(0x0195Fcc920EeE9a2726A5762B88720f6aC03a577);
+await con._numberMinted();
+await con.ownerOf(1);
+await con.owner();
+console.log(con.address)
+await con.deployed();
+const con = await cotract.deploy()
+const c = await cotract.deploy()
+const c = await contract.deploy()
+const cotract = await hre.ethers.getContractFactory("MyContract");
+hre.ethers
+const hre=require("hardhat")
+ethers
+ehters
+config
